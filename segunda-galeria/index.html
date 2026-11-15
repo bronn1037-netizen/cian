@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Anónimos a la intemperie — La luz que el suelo no borró</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#fff;color:#111;font-family:Arial,Helvetica,sans-serif}
+main{max-width:1400px;margin:auto;padding:22px}
+header{border-top:1px solid #111;border-bottom:1px solid #111;padding:10px 0;display:flex;justify-content:space-between;gap:16px;font-size:12px}
+h1{font-size:clamp(28px,5vw,62px);line-height:.98;letter-spacing:-.045em;max-width:900px;margin:34px 0 10px}
+.by{font-size:14px;margin:0 0 30px}
+.layout{display:grid;grid-template-columns:minmax(0,2.2fr) minmax(260px,1fr);gap:28px;align-items:start}
+.blocks{display:grid;gap:18px}
+.blocks img{display:block;width:100%;height:auto;cursor:zoom-in;border:1px solid #eee}
+aside{position:sticky;top:20px;font-size:14px;line-height:1.55}
+aside p{margin:0 0 1em;text-align:justify}
+footer{border-top:1px solid #111;margin-top:40px;padding:10px 0;font-size:11px;display:flex;justify-content:space-between}
+#viewer{display:none;position:fixed;inset:0;background:rgba(0,0,0,.94);z-index:5;align-items:center;justify-content:center;padding:24px}
+#viewer.open{display:flex}#viewer img{max-width:96vw;max-height:92vh;object-fit:contain}
+#close{position:absolute;right:22px;top:15px;color:white;background:none;border:0;font-size:34px;cursor:pointer}
+@media(max-width:800px){main{padding:14px}.layout{grid-template-columns:1fr}aside{position:static;grid-row:1}header{flex-wrap:wrap}}
+</style>
+</head>
+<body><main>
+<header><span>Archivo fotográfico recuperado</span><span>Lupin Alvarez Cian</span><span>Galería independiente</span></header>
+<h1>Anónimos a la intemperie: La luz que el suelo no borró</h1>
+<p class="by">Lupin Alvarez Cian</p>
+<div class="layout">
+<section class="blocks" aria-label="Galería de imágenes">
+<img src="imagenes/bloque1.jpg" alt="Composición fotográfica 1" onclick="show(this)">
+<img src="imagenes/bloque2.jpg" alt="Composición fotográfica 2" onclick="show(this)">
+<img src="imagenes/bloque3.jpg" alt="Composición fotográfica 3" onclick="show(this)">
+<img src="imagenes/bloque4.jpg" alt="Composición fotográfica 4" onclick="show(this)">
+<img src="imagenes/bloque5.jpg" alt="Composición fotográfica 5" onclick="show(this)">
+<img src="imagenes/bloque6.jpg" alt="Composición fotográfica 6" onclick="show(this)">
+</section>
+<aside>
+<p>¿Qué sucede con los recuerdos cuando pierde validez el soporte que los albergaba? ¿Dónde residen los fragmentos de la vida cotidiana cuando son arrojados a la basura? <em>Anónimos a la intemperie</em> aborda estas interrogantes mediante una operación de rescate afectivo y poético. Lupin Alvarez Cian recupera del espacio público una serie de diapositivas y negativos fotográficos descartados, construyendo un archivo donde el desecho urbano se transfigura en patrimonio sensible y compartido.</p>
+<p>La propuesta plantea una fricción fundamental entre la inmaterialidad contemporánea —donde las imágenes se acumulan de forma intangible— y la dimensión física y perecedera de la fotografía analógica. El acetato expuesto funciona como un cuerpo cargado de historia: sobre su emulsión conviven los rostros anónimos de un tiempo ido con las marcas materiales del deterioro, la intemperie y el rozamiento con el suelo.</p>
+<p>En lugar de recurrir a proyecciones monumentales que espectacularicen la imagen, el proyecto propone un dispositivo de escala íntima. La mesa de luz opera como una mesa de examen analítico. Al dotar al público de lupas y visores de mano (<em>viewfinders</em>), la muestra desarticula la distancia cómoda de la mirada tradicional. El espectador se convierte en un agente curioso e intruso que debe inclinarse, enfocar y examinar minuciosamente la materia.</p>
+<p>En esta experiencia de observación detenida, el «relato visible» de la escena familiar o el paisaje extraviado convive con el «relato secreto» del tiempo grabado en la materia. El polvo, las rayaduras y los bordes carcomidos dejan de ser imperfecciones para transformarse en el testimonio de una luz que la calle no logró borrar.</p>
+</aside></div>
+<footer><span>Anónimos a la intemperie</span><span>Lupin Alvarez Cian</span></footer>
+</main>
+<div id="viewer" onclick="hide()"><button id="close" aria-label="Cerrar">×</button><img id="large" alt=""></div>
+<script>
+function show(el){document.getElementById('large').src=el.src;document.getElementById('viewer').classList.add('open')}
+function hide(){document.getElementById('viewer').classList.remove('open')}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')hide()});
+</script></body></html>
