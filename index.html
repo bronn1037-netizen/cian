@@ -3,33 +3,269 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#171b2d">
-<title>Recuerdos en fotografías</title>
+<meta name="theme-color" content="#ffffff">
+<meta name="description" content="Anónimos a la intemperie — archivo fotográfico de Lupin Alvarez Cian.">
+<title>Anónimos a la intemperie — Lupin Alvarez Cian</title>
 <style>
-:root{color-scheme:dark;--bg:#101321;--panel:#191e31;--ink:#f5f1e9;--muted:#b7bdcc;--gold:#d8b878}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -15%,#34415d 0,transparent 55%),var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}
-header{padding:64px 22px 38px;text-align:center}header .eyebrow{color:var(--gold);letter-spacing:.22em;text-transform:uppercase;font-size:.72rem}h1{font-family:Georgia,serif;font-weight:400;font-size:clamp(2.3rem,6vw,4.5rem);line-height:1.05;margin:14px 0}header p{color:var(--muted);max-width:620px;margin:14px auto 0}
-main{max-width:1300px;margin:auto;padding:0 22px 70px}.toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:0 0 18px;color:var(--muted);font-size:.9rem}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:16px}.photo{border:1px solid #ffffff18;background:var(--panel);padding:8px;border-radius:14px;cursor:pointer;transition:transform .2s,border-color .2s}.photo:hover{transform:translateY(-3px);border-color:#d8b87888}.photo img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:9px}.photo span{display:block;padding:9px 5px 3px;color:#d8dbea;font-size:.85rem}
-footer{text-align:center;color:var(--muted);padding:0 20px 35px;font-size:.85rem}
-.viewer{position:fixed;inset:0;background:#070912f2;display:none;align-items:center;justify-content:center;padding:24px;z-index:5}.viewer.open{display:flex}.viewer img{max-width:92vw;max-height:86vh;object-fit:contain;box-shadow:0 20px 80px #0009}.close,.prev,.next{position:absolute;border:1px solid #ffffff55;background:#171b2dcc;color:white;border-radius:50%;width:44px;height:44px;font-size:24px;cursor:pointer}.close{top:18px;right:18px}.prev{left:18px}.next{right:18px}.counter{position:absolute;bottom:14px;color:#ddd}
-@media(max-width:600px){header{padding-top:44px}.grid{grid-template-columns:1fr}.prev{left:8px}.next{right:8px}}
+:root{
+  --ink:#111;
+  --paper:#fff;
+  --line:#111;
+  --muted:#555;
+  --gap:1.25rem;
+  --page: min(1440px, 100%);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0 auto;
+  max-width:var(--page);
+  padding:18px 24px 42px;
+  color:var(--ink);
+  background:var(--paper);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+}
+hr{height:0;border:0;border-top:1px solid var(--line);margin:0}
+.header-bar{
+  display:grid;
+  grid-template-columns:repeat(12,minmax(0,1fr));
+  gap:var(--gap);
+  padding:13px 0;
+  align-items:center;
+  font-size:.78rem;
+  font-weight:500;
+  letter-spacing:.015em;
+}
+.header-bar .date{grid-column:span 3}
+.header-bar .author{grid-column:span 6;text-align:center}
+.header-bar .project{grid-column:span 3;text-align:right}
+.layout{
+  display:grid;
+  grid-template-columns:minmax(0,9fr) minmax(230px,3fr);
+  gap:clamp(22px,3vw,44px);
+  align-items:start;
+  padding-top:24px;
+}
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;
+}
+.photo{
+  display:block;
+  width:100%;
+  padding:0;
+  border:0;
+  background:#eee;
+  cursor:zoom-in;
+  overflow:hidden;
+}
+.photo img{
+  display:block;
+  width:100%;
+  aspect-ratio:4/3;
+  object-fit:cover;
+  transition:opacity .25s ease;
+}
+.photo:hover img{opacity:.88}
+.photo:focus-visible{outline:2px solid #111;outline-offset:4px}
+.sidebar{position:sticky;top:20px}
+.sidebar h1{
+  margin:0 0 12px;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(2rem,3.5vw,3.15rem);
+  line-height:.98;
+  font-weight:700;
+  letter-spacing:-.045em;
+}
+.sidebar .intro{
+  margin:14px 0 0;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:.96rem;
+  line-height:1.48;
+  text-align:left;
+}
+.sidebar .intro p{margin:0 0 1.05em}
+.sidebar .credits{
+  margin-top:20px;
+  padding-top:10px;
+  border-top:1px solid var(--line);
+  font-size:.72rem;
+  line-height:1.45;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+}
+.footer{
+  margin-top:28px;
+  padding-top:10px;
+  border-top:1px solid var(--line);
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  font-size:.7rem;
+  color:var(--muted);
+}
+.viewer{
+  position:fixed;
+  inset:0;
+  z-index:10;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:54px 64px;
+  background:rgba(0,0,0,.94);
+}
+.viewer.open{display:flex}
+.viewer img{
+  display:block;
+  max-width:100%;
+  max-height:calc(100vh - 108px);
+  object-fit:contain;
+}
+.viewer button{
+  position:absolute;
+  display:grid;
+  place-items:center;
+  width:42px;
+  height:42px;
+  padding:0;
+  border:1px solid #ffffff88;
+  border-radius:50%;
+  color:#fff;
+  background:#111a;
+  font-size:27px;
+  line-height:1;
+  cursor:pointer;
+}
+.viewer .close{top:16px;right:18px}
+.viewer .prev{left:16px;top:50%;transform:translateY(-50%)}
+.viewer .next{right:16px;top:50%;transform:translateY(-50%)}
+.viewer .counter{
+  position:absolute;
+  bottom:16px;
+  color:#fff;
+  font-size:.75rem;
+  letter-spacing:.08em;
+}
+@media(max-width:800px){
+  body{padding:14px 16px 30px}
+  .layout{grid-template-columns:1fr;gap:28px;padding-top:18px}
+  .sidebar{position:static;grid-row:1}
+  .gallery{grid-row:2}
+  .sidebar h1{font-size:clamp(2.3rem,9vw,3.5rem)}
+  .sidebar .intro{font-size:.94rem}
+  .header-bar{gap:8px;font-size:.68rem}
+  .header-bar .date{grid-column:span 4}
+  .header-bar .author{grid-column:span 4}
+  .header-bar .project{grid-column:span 4}
+}
+@media(max-width:520px){
+  body{padding:12px 12px 26px}
+  .header-bar{grid-template-columns:1fr 1fr;row-gap:5px}
+  .header-bar .date{grid-column:1;text-align:left}
+  .header-bar .author{grid-column:2;text-align:right}
+  .header-bar .project{grid-column:1 / -1;text-align:left}
+  .gallery{grid-template-columns:1fr;gap:12px}
+  .photo img{aspect-ratio:4/3}
+  .viewer{padding:52px 12px}
+  .viewer .prev{left:8px}
+  .viewer .next{right:8px}
+  .footer{font-size:.64rem}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .photo img{transition:none}
+}
 </style>
 </head>
 <body>
-<header><div class="eyebrow">Álbum familiar</div><h1>Recuerdos en fotografías</h1><p>Un recorrido por momentos, paisajes y encuentros que merecen seguir siendo recordados.</p></header>
-<main><div class="toolbar"><span>Archivo fotográfico</span><span>12 fotografías · Tocá una para ampliar</span></div><section class="grid" id="gallery" aria-label="Galería de fotografías"></section></main>
-<footer>Un pequeño álbum para conservar grandes recuerdos.</footer>
-<div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-label="Fotografía ampliada"><button class="close" aria-label="Cerrar">×</button><button class="prev" aria-label="Anterior">‹</button><img id="large" alt="Fotografía ampliada"><button class="next" aria-label="Siguiente">›</button><div class="counter" id="counter"></div></div>
+<hr>
+<header class="header-bar">
+  <div class="date">ARCHIVO FOTOGRÁFICO</div>
+  <div class="author">LUPIN ALVAREZ CIAN</div>
+  <div class="project">ANÓNIMOS A LA INTEMPERIE</div>
+</header>
+<hr>
+
+<main class="layout">
+  <section class="gallery" id="gallery" aria-label="Galería de fotografías"></section>
+
+  <aside class="sidebar">
+    <h1>Anónimos a la intemperie</h1>
+    <hr>
+    <div class="intro">
+      <p>¿Qué sucede con los recuerdos cuando pierde validez el soporte que los albergaba? ¿Dónde residen los fragmentos de la vida cotidiana cuando son arrojados a la basura? <em>Anónimos a la intemperie</em> aborda estas interrogantes mediante una operación de rescate afectivo y poético. Lupin Alvarez Cian recupera del espacio público una serie de diapositivas y negativos fotográficos descartados, construyendo un archivo donde el desecho urbano se transfigura en patrimonio sensible y compartido.</p>
+
+      <p>La propuesta plantea una fricción fundamental entre la inmaterialidad contemporánea —donde las imágenes se acumulan de forma intangible— y la dimensión física y perecedera de la fotografía analógica. El acetato expuesto funciona como un cuerpo cargado de historia: sobre su emulsión conviven los rostros anónimos de un tiempo ido con las marcas materiales del deterioro, la intemperie y el rozamiento con el suelo.</p>
+
+      <p>En lugar de recurrir a proyecciones monumentales que espectacularicen la imagen, el proyecto propone un dispositivo de escala íntima. La mesa de luz opera como una mesa de examen analítico. Al dotar al público de lupas y visores de mano (<em>viewfinders</em>), la muestra desarticula la distancia cómoda de la mirada tradicional. El espectador se convierte en un agente curioso e intruso que debe inclinarse, enfocar y examinar minuciosamente la materia.</p>
+
+      <p>En esta experiencia de observación detenida, el «relato visible» de la escena familiar o el paisaje extraviado convive con el «relato secreto» del tiempo grabado en la materia. El polvo, las rayaduras y los bordes carcomidos dejan de ser imperfecciones para transformarse en el testimonio de una luz que la calle no logró borrar.</p>
+    </div>
+    <div class="credits">Lupin Alvarez Cian<br>Archivo de diapositivas y negativos recuperados</div>
+  </aside>
+</main>
+
+<footer class="footer">
+  <span>ANÓNIMOS A LA INTEMPERIE</span>
+  <span>12 IMÁGENES · SELECCIONAR PARA AMPLIAR</span>
+</footer>
+
+<div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-label="Fotografía ampliada">
+  <button class="close" type="button" aria-label="Cerrar">×</button>
+  <button class="prev" type="button" aria-label="Fotografía anterior">‹</button>
+  <img id="large" alt="Fotografía del archivo ampliada">
+  <button class="next" type="button" aria-label="Fotografía siguiente">›</button>
+  <div class="counter" id="counter"></div>
+</div>
+
 <script>
 const files = Array.from({length:12},(_,i)=>`img${String(i+14).padStart(5,'0')}.webp`);
-const gallery=document.querySelector('#gallery'), viewer=document.querySelector('#viewer'), large=document.querySelector('#large'), counter=document.querySelector('#counter');
-let current=0;
-files.forEach((file,i)=>{const card=document.createElement('button');card.className='photo';card.type='button';card.innerHTML=`<img loading="lazy" src="fotos/${file}" alt="Fotografía familiar ${i+1}"><span>Fotografía ${String(i+1).padStart(2,'0')}</span>`;card.addEventListener('click',()=>open(i));gallery.append(card)});
-function open(i){current=i;large.src='fotos/'+files[current];counter.textContent=`${current+1} / ${files.length}`;viewer.classList.add('open');document.body.style.overflow='hidden'}
-function close(){viewer.classList.remove('open');document.body.style.overflow=''}
-function move(n){open((current+n+files.length)%files.length)}
-document.querySelector('.close').onclick=close;document.querySelector('.prev').onclick=()=>move(-1);document.querySelector('.next').onclick=()=>move(1);
+const gallery = document.querySelector('#gallery');
+const viewer = document.querySelector('#viewer');
+const large = document.querySelector('#large');
+const counter = document.querySelector('#counter');
+let current = 0;
+
+files.forEach((file,i)=>{
+  const card = document.createElement('button');
+  card.className = 'photo';
+  card.type = 'button';
+  card.setAttribute('aria-label',`Ampliar fotografía ${i+1}`);
+  const img = document.createElement('img');
+  img.loading = 'lazy';
+  img.src = `fotos/${file}`;
+  img.alt = `Imagen ${i+1} del archivo Anónimos a la intemperie`;
+  card.append(img);
+  card.addEventListener('click',()=>open(i));
+  gallery.append(card);
+});
+
+function open(i){
+  current = i;
+  large.src = `fotos/${files[current]}`;
+  counter.textContent = `${current+1} / ${files.length}`;
+  viewer.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  document.querySelector('.close').focus();
+}
+function close(){
+  viewer.classList.remove('open');
+  document.body.style.overflow = '';
+}
+function move(n){
+  open((current+n+files.length)%files.length);
+}
+document.querySelector('.close').addEventListener('click',close);
+document.querySelector('.prev').addEventListener('click',()=>move(-1));
+document.querySelector('.next').addEventListener('click',()=>move(1));
 viewer.addEventListener('click',e=>{if(e.target===viewer)close()});
-document.addEventListener('keydown',e=>{if(!viewer.classList.contains('open'))return;if(e.key==='Escape')close();if(e.key==='ArrowRight')move(1);if(e.key==='ArrowLeft')move(-1)});
+document.addEventListener('keydown',e=>{
+  if(!viewer.classList.contains('open')) return;
+  if(e.key==='Escape') close();
+  if(e.key==='ArrowRight') move(1);
+  if(e.key==='ArrowLeft') move(-1);
+});
 </script>
-</body></html>
+</body>
+</html>
