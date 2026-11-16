@@ -1,12 +1,13 @@
 SEGUNDA GALERÍA — ANÓNIMOS A LA INTEMPERIE
 
 Contenido:
-- index.html: página de la galería.
-- imagenes/: seis composiciones recortadas de la página original del PDF.
+- index.html
+- imagenes/foto-01.jpg a foto-10.jpg
 
-Para publicar:
-1. En el repositorio GitHub, crear/subir la carpeta segunda-galeria.
-2. Incluir index.html y la carpeta imagenes completa.
-3. La dirección será https://bronn1037-netizen.github.io/cian/segunda-galeria/
+La galería utiliza las diez fotografías originales recibidas.
+Incluye columna editorial lateral, ampliación de imágenes y un efecto
+parallax sutil al desplazarse. Respeta la preferencia de movimiento reducido
+del navegador.
 
-Esta galería es independiente de la portada y de la primera galería.
+Para publicarla en GitHub Pages, subir el contenido de esta carpeta dentro
+de la carpeta segunda-galeria del repositorio.

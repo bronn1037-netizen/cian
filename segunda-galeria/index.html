@@ -2,50 +2,118 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Anónimos a la intemperie — La luz que el suelo no borró</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f7f7f5">
+<title>Anónimos a la intemperie — Lupin Alvarez Cian</title>
 <style>
-*{box-sizing:border-box}body{margin:0;background:#fff;color:#111;font-family:Arial,Helvetica,sans-serif}
-main{max-width:1400px;margin:auto;padding:22px}
-header{border-top:1px solid #111;border-bottom:1px solid #111;padding:10px 0;display:flex;justify-content:space-between;gap:16px;font-size:12px}
-h1{font-size:clamp(28px,5vw,62px);line-height:.98;letter-spacing:-.045em;max-width:900px;margin:34px 0 10px}
-.by{font-size:14px;margin:0 0 30px}
-.layout{display:grid;grid-template-columns:minmax(0,2.2fr) minmax(260px,1fr);gap:28px;align-items:start}
-.blocks{display:grid;gap:18px}
-.blocks img{display:block;width:100%;height:auto;cursor:zoom-in;border:1px solid #eee}
-aside{position:sticky;top:20px;font-size:14px;line-height:1.55}
-aside p{margin:0 0 1em;text-align:justify}
-footer{border-top:1px solid #111;margin-top:40px;padding:10px 0;font-size:11px;display:flex;justify-content:space-between}
-#viewer{display:none;position:fixed;inset:0;background:rgba(0,0,0,.94);z-index:5;align-items:center;justify-content:center;padding:24px}
-#viewer.open{display:flex}#viewer img{max-width:96vw;max-height:92vh;object-fit:contain}
-#close{position:absolute;right:22px;top:15px;color:white;background:none;border:0;font-size:34px;cursor:pointer}
-@media(max-width:800px){main{padding:14px}.layout{grid-template-columns:1fr}aside{position:static;grid-row:1}header{flex-wrap:wrap}}
+:root{--paper:#f7f7f5;--ink:#191919;--muted:#777;--line:#d8d8d3;--gutter:clamp(20px,4vw,64px)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,sans-serif}
+header{padding:26px var(--gutter) 22px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:20px;align-items:center;font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+header span:last-child{color:var(--muted)}
+main{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,32%);gap:clamp(32px,6vw,100px);padding:clamp(28px,5vw,76px) var(--gutter) 100px;max-width:1800px;margin:auto}
+.gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;column-gap:clamp(12px,2vw,30px);row-gap:clamp(34px,5vw,76px)}
+figure{margin:0;position:relative;overflow:hidden;background:#e8e7e2}
+figure:nth-child(4n+1){margin-top:0}
+figure:nth-child(4n+2){margin-top:clamp(35px,7vw,110px)}
+figure:nth-child(4n+3){margin-top:clamp(12px,3vw,44px)}
+figure:nth-child(4n){margin-top:clamp(55px,9vw,135px)}
+figure img{display:block;width:100%;height:auto;transform:translate3d(0,var(--shift,0px),0) scale(1.035);will-change:transform;transition:filter .5s ease;filter:saturate(.98)}
+figure:hover img{filter:saturate(1.08)}
+figcaption{font-size:10px;letter-spacing:.12em;color:var(--muted);padding:10px 0 0;text-transform:uppercase}
+aside{position:sticky;top:36px;align-self:start;padding-top:4px}
+.kicker{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin:0 0 28px}
+h1{font-weight:400;font-size:clamp(30px,3.2vw,52px);line-height:1.06;letter-spacing:-.045em;margin:0 0 18px;max-width:570px}
+.author{font-size:13px;letter-spacing:.04em;margin:0 0 48px}
+.rule{border:0;border-top:1px solid var(--line);margin:0 0 28px}
+.copy{font-family:Georgia,'Times New Roman',serif;font-size:clamp(15px,1.15vw,18px);line-height:1.62;color:#353535}
+.copy p{margin:0 0 1.25em}
+.note{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);line-height:1.6}
+footer{border-top:1px solid var(--line);padding:20px var(--gutter) 28px;display:flex;justify-content:space-between;gap:16px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.lightbox{position:fixed;inset:0;background:rgba(10,10,10,.94);display:none;align-items:center;justify-content:center;padding:4vw;z-index:10}
+.lightbox.open{display:flex}
+.lightbox img{max-width:92vw;max-height:90vh;object-fit:contain}
+.lightbox button{position:absolute;top:20px;right:24px;border:0;background:none;color:white;font-size:30px;cursor:pointer}
+figure{cursor:zoom-in}
+@media(max-width:800px){
+ main{grid-template-columns:1fr;gap:56px;padding-top:30px}
+ aside{position:relative;top:auto;grid-row:1;padding-bottom:34px;border-bottom:1px solid var(--line)}
+ .author{margin-bottom:30px}
+ .gallery{grid-row:2}
+}
+@media(max-width:520px){
+ header{font-size:9px}
+ .gallery{column-gap:10px;row-gap:28px}
+ figure:nth-child(n){margin-top:0}
+ figure:nth-child(3n+2){margin-top:26px}
+ figure:nth-child(3n){margin-top:12px}
+ .copy{font-size:16px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}figure img{transform:none!important;transition:none}}
 </style>
 </head>
-<body><main>
-<header><span>Archivo fotográfico recuperado</span><span>Lupin Alvarez Cian</span><span>Galería independiente</span></header>
-<h1>Anónimos a la intemperie: La luz que el suelo no borró</h1>
-<p class="by">Lupin Alvarez Cian</p>
-<div class="layout">
-<section class="blocks" aria-label="Galería de imágenes">
-<img src="imagenes/bloque1.jpg" alt="Composición fotográfica 1" onclick="show(this)">
-<img src="imagenes/bloque2.jpg" alt="Composición fotográfica 2" onclick="show(this)">
-<img src="imagenes/bloque3.jpg" alt="Composición fotográfica 3" onclick="show(this)">
-<img src="imagenes/bloque4.jpg" alt="Composición fotográfica 4" onclick="show(this)">
-<img src="imagenes/bloque5.jpg" alt="Composición fotográfica 5" onclick="show(this)">
-<img src="imagenes/bloque6.jpg" alt="Composición fotográfica 6" onclick="show(this)">
+<body>
+<header><span>Archivo fotográfico · Proyecto visual</span><span>Lupin Alvarez Cian</span></header>
+<main>
+<section class="gallery" aria-label="Galería fotográfica">
+  <figure><img src="imagenes/foto-01.jpg" alt="Figura en una vereda, en una imagen analógica intervenida" loading="eager"><figcaption>Imagen 01</figcaption></figure>
+  <figure><img src="imagenes/foto-02.jpg" alt="Retrato de una figura disfrazada frente a una cortina" loading="lazy"><figcaption>Imagen 02</figcaption></figure>
+  <figure><img src="imagenes/foto-03.jpg" alt="Fotograma abstracto anaranjado con marcas del soporte" loading="lazy"><figcaption>Imagen 03</figcaption></figure>
+  <figure><img src="imagenes/foto-04.jpg" alt="Celebración familiar en un salón" loading="lazy"><figcaption>Imagen 04</figcaption></figure>
+  <figure><img src="imagenes/foto-05.jpg" alt="Reunión familiar alrededor de una mesa" loading="lazy"><figcaption>Imagen 05</figcaption></figure>
+  <figure><img src="imagenes/foto-06.jpg" alt="Superficie fotográfica deteriorada y sobreexpuesta" loading="lazy"><figcaption>Imagen 06</figcaption></figure>
+  <figure><img src="imagenes/foto-07.jpg" alt="Escena de una reunión familiar" loading="lazy"><figcaption>Imagen 07</figcaption></figure>
+  <figure><img src="imagenes/foto-08.jpg" alt="Imagen abstracta en tonos magenta y azul, con trazos" loading="lazy"><figcaption>Imagen 08</figcaption></figure>
+  <figure><img src="imagenes/foto-09.jpg" alt="Imagen abstracta en tonos magenta y azul, con trazos" loading="lazy"><figcaption>Imagen 09</figcaption></figure>
+  <figure><img src="imagenes/foto-10.jpg" alt="Figura en un paisaje rocoso" loading="lazy"><figcaption>Imagen 10</figcaption></figure>
 </section>
 <aside>
-<p>¿Qué sucede con los recuerdos cuando pierde validez el soporte que los albergaba? ¿Dónde residen los fragmentos de la vida cotidiana cuando son arrojados a la basura? <em>Anónimos a la intemperie</em> aborda estas interrogantes mediante una operación de rescate afectivo y poético. Lupin Alvarez Cian recupera del espacio público una serie de diapositivas y negativos fotográficos descartados, construyendo un archivo donde el desecho urbano se transfigura en patrimonio sensible y compartido.</p>
-<p>La propuesta plantea una fricción fundamental entre la inmaterialidad contemporánea —donde las imágenes se acumulan de forma intangible— y la dimensión física y perecedera de la fotografía analógica. El acetato expuesto funciona como un cuerpo cargado de historia: sobre su emulsión conviven los rostros anónimos de un tiempo ido con las marcas materiales del deterioro, la intemperie y el rozamiento con el suelo.</p>
-<p>En lugar de recurrir a proyecciones monumentales que espectacularicen la imagen, el proyecto propone un dispositivo de escala íntima. La mesa de luz opera como una mesa de examen analítico. Al dotar al público de lupas y visores de mano (<em>viewfinders</em>), la muestra desarticula la distancia cómoda de la mirada tradicional. El espectador se convierte en un agente curioso e intruso que debe inclinarse, enfocar y examinar minuciosamente la materia.</p>
-<p>En esta experiencia de observación detenida, el «relato visible» de la escena familiar o el paisaje extraviado convive con el «relato secreto» del tiempo grabado en la materia. El polvo, las rayaduras y los bordes carcomidos dejan de ser imperfecciones para transformarse en el testimonio de una luz que la calle no logró borrar.</p>
-</aside></div>
-<footer><span>Anónimos a la intemperie</span><span>Lupin Alvarez Cian</span></footer>
+  <p class="kicker">Anónimos a la intemperie</p>
+  <h1>La luz que el suelo no borró</h1>
+  <p class="author">Lupin Alvarez Cian</p>
+  <hr class="rule">
+  <div class="copy">
+    <p>¿Qué sucede con los recuerdos cuando pierde validez el soporte que los albergaba? ¿Dónde residen los fragmentos de la vida cotidiana cuando son arrojados a la basura? <em>Anónimos a la intemperie</em> aborda estas interrogantes mediante una operación de rescate afectivo y poético. Lupin Alvarez Cian recupera del espacio público una serie de diapositivas y negativos fotográficos descartados, construyendo un archivo donde el desecho urbano se transfigura en patrimonio sensible y compartido.</p>
+    <p>La propuesta plantea una fricción fundamental entre la inmaterialidad contemporánea —donde las imágenes se acumulan de forma intangible— y la dimensión física y perecedera de la fotografía analógica. El acetato expuesto funciona como un cuerpo cargado de historia: sobre su emulsión conviven los rostros anónimos de un tiempo ido con las marcas materiales del deterioro, la intemperie y el rozamiento con el suelo.</p>
+    <p>En lugar de recurrir a proyecciones monumentales que espectacularicen la imagen, el proyecto propone un dispositivo de escala íntima. La mesa de luz opera como una mesa de examen analítico. Al dotar al público de lupas y visores de mano (<em>viewfinders</em>), la muestra desarticula la distancia cómoda de la mirada tradicional. El espectador se convierte en un agente curioso e intruso que debe inclinarse, enfocar y examinar minuciosamente la materia.</p>
+    <p>En esta experiencia de observación detenida, el «relato visible» de la escena familiar o el paisaje extraviado convive con el «relato secreto» del tiempo grabado en la materia. El polvo, las rayaduras y los bordes carcomidos dejan de ser imperfecciones para transformarse en el testimonio de una luz que la calle no logró borrar.</p>
+  </div>
+  <div class="note">Archivo recuperado · Diez imágenes<br>Fotografía analógica, memoria y deterioro</div>
+</aside>
 </main>
-<div id="viewer" onclick="hide()"><button id="close" aria-label="Cerrar">×</button><img id="large" alt=""></div>
+<footer><span>Anónimos a la intemperie</span><span>La luz que el suelo no borró</span></footer>
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Imagen ampliada"><button type="button" aria-label="Cerrar">×</button><img alt="" src=""></div>
 <script>
-function show(el){document.getElementById('large').src=el.src;document.getElementById('viewer').classList.add('open')}
-function hide(){document.getElementById('viewer').classList.remove('open')}
-document.addEventListener('keydown',e=>{if(e.key==='Escape')hide()});
-</script></body></html>
+(function(){
+ const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ const figures=[...document.querySelectorAll('.gallery figure')];
+ if(!reduce){
+   let ticking=false;
+   function update(){
+     const vh=window.innerHeight;
+     figures.forEach((fig,i)=>{
+       const r=fig.getBoundingClientRect();
+       const center=r.top+r.height/2;
+       const delta=(center-vh/2)/vh;
+       const amount=Math.max(-22,Math.min(22,-delta*18));
+       fig.style.setProperty('--shift',amount.toFixed(1)+'px');
+     });
+     ticking=false;
+   }
+   window.addEventListener('scroll',()=>{if(!ticking){window.requestAnimationFrame(update);ticking=true;}},{passive:true});
+   window.addEventListener('resize',update);
+   update();
+ }
+ const box=document.getElementById('lightbox'), big=box.querySelector('img');
+ figures.forEach(fig=>fig.addEventListener('click',()=>{
+   const im=fig.querySelector('img');big.src=im.src;big.alt=im.alt;box.classList.add('open');
+ }));
+ function close(){box.classList.remove('open');big.src='';}
+ box.querySelector('button').addEventListener('click',close);
+ box.addEventListener('click',e=>{if(e.target===box)close();});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});
+})();
+</script>
+</body>
+</html>
