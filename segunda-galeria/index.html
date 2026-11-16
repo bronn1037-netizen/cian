@@ -13,13 +13,9 @@ body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,Helveti
 header{padding:26px var(--gutter) 22px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:20px;align-items:center;font-size:11px;letter-spacing:.12em;text-transform:uppercase}
 header span:last-child{color:var(--muted)}
 main{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,32%);gap:clamp(32px,6vw,100px);padding:clamp(28px,5vw,76px) var(--gutter) 100px;max-width:1800px;margin:auto}
-.gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;column-gap:clamp(12px,2vw,30px);row-gap:clamp(34px,5vw,76px)}
-figure{margin:0;position:relative;overflow:hidden;background:#e8e7e2}
-figure:nth-child(4n+1){margin-top:0}
-figure:nth-child(4n+2){margin-top:clamp(35px,7vw,110px)}
-figure:nth-child(4n+3){margin-top:clamp(12px,3vw,44px)}
-figure:nth-child(4n){margin-top:clamp(55px,9vw,135px)}
-figure img{display:block;width:100%;height:auto;transform:translate3d(0,var(--shift,0px),0) scale(1.035);will-change:transform;transition:filter .5s ease;filter:saturate(.98)}
+.gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;column-gap:clamp(12px,2vw,30px);row-gap:clamp(24px,3vw,42px)}
+figure{margin:0;position:relative;overflow:hidden;background:#e8e7e2;min-width:0}
+figure img{display:block;width:100%;aspect-ratio:1/1;height:auto;object-fit:cover;object-position:center;transform:translate3d(0,var(--shift,0px),0) scale(1.10);will-change:transform;transition:filter .5s ease;filter:saturate(.98)}
 figure:hover img{filter:saturate(1.08)}
 figcaption{font-size:10px;letter-spacing:.12em;color:var(--muted);padding:10px 0 0;text-transform:uppercase}
 aside{position:sticky;top:36px;align-self:start;padding-top:4px}
@@ -44,10 +40,8 @@ figure{cursor:zoom-in}
 }
 @media(max-width:520px){
  header{font-size:9px}
- .gallery{column-gap:10px;row-gap:28px}
- figure:nth-child(n){margin-top:0}
- figure:nth-child(3n+2){margin-top:26px}
- figure:nth-child(3n){margin-top:12px}
+ .gallery{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:10px;row-gap:22px}
+ figcaption{font-size:9px;padding-top:8px}
  .copy{font-size:16px}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}figure img{transform:none!important;transition:none}}
